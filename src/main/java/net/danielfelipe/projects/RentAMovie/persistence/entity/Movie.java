@@ -1,23 +1,26 @@
 package net.danielfelipe.projects.RentAMovie.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.lang.reflect.Array;
+import java.util.List;
 
 @Entity
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-    private String title;
-    private String description;
-    private String releaseDate;
-    private String sourceImage;
 
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
+    private String director;
+
+    private String description;
+
+    private String releaseYear;
+
+    //Getters and setters
     public Long getId() {
         return id;
     }
@@ -34,6 +37,14 @@ public class Movie {
         this.title = title;
     }
 
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -42,20 +53,11 @@ public class Movie {
         this.description = description;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-
-    public String getSourceImage() {
-        return sourceImage;
-    }
-
-    public void setSourceImage(String sourceImage) {
-        this.sourceImage = sourceImage;
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
     }
 }
