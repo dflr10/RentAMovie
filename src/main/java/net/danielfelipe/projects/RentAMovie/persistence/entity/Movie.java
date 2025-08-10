@@ -20,6 +20,10 @@ public class Movie {
 
     private String releaseYear;
 
+    //Relationships
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie")
+    private List<Rating> ratings;
+
     //Getters and setters
     public Long getId() {
         return id;
@@ -59,5 +63,13 @@ public class Movie {
 
     public void setReleaseYear(String releaseYear) {
         this.releaseYear = releaseYear;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

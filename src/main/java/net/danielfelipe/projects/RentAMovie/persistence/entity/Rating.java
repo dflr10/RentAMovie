@@ -3,6 +3,8 @@ package net.danielfelipe.projects.RentAMovie.persistence.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Check;
 
+import java.util.List;
+
 @Entity
 public class Rating {
 
@@ -10,15 +12,24 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "movie_id", nullable = false)
     private Long movieId;
 
-    @Column(nullable = false)
+    @Column(name = "user_id", nullable = false)
     private Long userId;
 
     @Check(constraints= "rating >=0 and rating <=5")
     @Column(nullable = false)
     private int rating;
+
+    //Relationships
+    @ManyToOne
+    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
+    private Movie movie;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
     //Getters and setters
     public Long getId() {
@@ -51,5 +62,21 @@ public class Rating {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

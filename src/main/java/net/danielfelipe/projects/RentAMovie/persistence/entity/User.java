@@ -18,6 +18,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    //Relationships
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Rating> ratings;
+
     //Getters and setters
     public Long getId() {
         return id;
@@ -49,5 +53,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
