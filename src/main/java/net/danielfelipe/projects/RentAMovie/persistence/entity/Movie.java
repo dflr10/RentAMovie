@@ -1,6 +1,7 @@
 package net.danielfelipe.projects.RentAMovie.persistence.entity;
 
 import jakarta.persistence.*;
+import net.danielfelipe.projects.RentAMovie.util.MovieGenre;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public class Movie {
     private String director;
 
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    private MovieGenre genre;
 
     private String releaseYear;
 
@@ -55,6 +59,14 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MovieGenre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(MovieGenre genre) {
+        this.genre = genre;
     }
 
     public String getReleaseYear() {
