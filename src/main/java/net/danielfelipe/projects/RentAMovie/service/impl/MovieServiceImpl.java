@@ -62,7 +62,10 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void deleteOneById(Long id) {
-        Movie movie = this.findOneById(id);
-        movieCrudRepository.delete(movie);
+        if(movieCrudRepository.existsById(id)){
+            movieCrudRepository.deleteById(id);
+            return;
+        }
+       throw new ObjectNotFoundException("[movie:"+Long.toString(id)+"]");
     }
 }
